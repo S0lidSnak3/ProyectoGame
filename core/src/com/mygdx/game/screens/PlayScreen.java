@@ -29,6 +29,7 @@ public class PlayScreen implements Screen {
         this.game = game;
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(MyGdxGame.V_WIDTH,MyGdxGame.V_HEIGHT,gamecam);
+        hud = new Hud(game.batch);
     }
     @Override
     public void show() {
