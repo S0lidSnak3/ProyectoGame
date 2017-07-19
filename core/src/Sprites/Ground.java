@@ -18,5 +18,10 @@ public class Ground extends InteractiveTileObject {
     public Ground(World world, TiledMap map, Rectangle bounds) {
         super(world, map, bounds);
     }
+
+    @Override
+    public void onHeadHits() {
+       
+    }
     
 }

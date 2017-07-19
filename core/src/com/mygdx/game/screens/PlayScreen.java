@@ -8,6 +8,7 @@ package com.mygdx.game.screens;
 import Scenes.Hud;
 import Sprites.Pers;
 import Tools.B2WorldCreator;
+import Tools.WorldContactListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -65,12 +66,13 @@ public class PlayScreen implements Screen {
         renderer = new OrthogonalTiledMapRenderer(map, 1 / MyGdxGame.PPM);
         gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
         
-        world = new World(new Vector2(0,-10 / MyGdxGame.PPM), true);
+        world = new World(new Vector2(0,-10), true);
         b2dr = new Box2DDebugRenderer();
         new B2WorldCreator(world, map);
+        
         player = new Pers(world, this);
         
-        
+       // world.setContactListener(new WorldContactListener());
      
     }
    public TextureAtlas getAtlas(){
@@ -83,7 +85,7 @@ public class PlayScreen implements Screen {
     }
     public void handleInput(float dt){
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP))
-            player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
+            player.jump();
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
             player.b2body.applyLinearImpulse(new Vector2(0.1f, 0),player.b2body.getWorldCenter(), true);
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)

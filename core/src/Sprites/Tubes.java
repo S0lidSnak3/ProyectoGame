@@ -19,5 +19,10 @@ public class Tubes extends InteractiveTileObject
     public Tubes(World world, TiledMap map, Rectangle bounds) {
         super(world, map, bounds);
     }
+
+    @Override
+    public void onHeadHits() {
+        
+    }
     
 }
